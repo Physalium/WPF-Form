@@ -1,0 +1,42 @@
+﻿<Window x:Class="Lab1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Lab1"
+        mc:Ignorable="d"
+        Title="Formularz" Height="450" Width="800" Loaded="Window_Loaded" Closing="Window_Closing"
+        >
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.3*" />
+            <ColumnDefinition Width="2*" />
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0">
+            <Label  Content="Imię:" Margin="10" FontSize="15"/>
+            <local:TextBoxWithErrorProvider x:Name="forename" Margin="10" />
+            <Label Content="Nazwisko:" Margin="10" FontSize="15"/>
+            <local:TextBoxWithErrorProvider x:Name="surname" Margin="10"/>
+            <WrapPanel  Margin="0" Orientation="Horizontal" >
+                <Label Content="Wiek: " FontSize="15" Width="50" HorizontalAlignment="Left"/>
+                <Label  Content="{Binding Path=Value, ElementName=sliderAge}"  FontSize="15" HorizontalAlignment="Left"  ></Label>
+                <Slider x:Name="sliderAge"  Width="300" Margin="5" BorderBrush="Red"  VerticalAlignment="Center"  SmallChange="1" TickPlacement="BottomRight" Maximum="100" Minimum="0"   Value="20" IsSnapToTickEnabled="True"  BorderThickness="0"></Slider>
+                <Label Content="Waga: " FontSize="15" Width="50" HorizontalAlignment="Left"/>
+                <Label  Content="{Binding Path=Value, ElementName=sliderWeight}"  FontSize="15" HorizontalAlignment="Left"  ></Label>
+                <Slider x:Name="sliderWeight"  Width="300" Margin="5" BorderBrush="Red"  VerticalAlignment="Center"  SmallChange="1" TickPlacement="BottomRight" Maximum="150" Minimum="0" Value="75"    IsSnapToTickEnabled="True"  BorderThickness="0"></Slider>
+            </WrapPanel>
+            <Grid Margin="10,20,10,10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+
+                <Button x:Name="buttonDodaj" FontSize="15" Height="50" Grid.Column="0" Content="Dodaj"  Click="buttonDodaj_Click" />
+                <Button x:Name="buttonEdytuj" FontSize="15" Grid.Column="1"  Content="Edytuj"  Click="buttonEdytuj_Click" />
+                <Button x:Name="buttonUsun" FontSize="15"  Grid.Column="2" Content="Usuń"  Click="buttonUsun_Click" />
+            </Grid>
+        </StackPanel>
+        <ListBox x:Name="listBoxPilkarze" Grid.Column="1" FontSize="17" SelectionChanged="listBoxPilkarze_SelectionChanged" />
+    </Grid>
+</Window>
